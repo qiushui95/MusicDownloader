@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion rootProject.ext.version.compileSdk
     buildToolsVersion rootProject.ext.version.buildTolls
@@ -17,6 +19,8 @@ android {
         sourceSets {
             main.java.srcDirs += 'src/main/kotlin'
             test.java.srcDirs += 'src/test/kotlin'
+            debug.java.srcDirs = ['src/main/debug/kotlin']
+            release.java.srcDirs = ['src/main/release/kotlin']
             androidTest.java.srcDirs += 'src/androidTest/kotlin'
         }
 
@@ -28,19 +32,100 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //module
+    implementation project(":ybase")
+    implementation project(":yrecycler")
+    implementation project(":yhttp")
+
     //kotlin
     implementation rootProject.ext.kotlin.stdlib
 
-    //android
+    //support
     implementation rootProject.ext.support.appcompat
     implementation rootProject.ext.support.ktx
 
     //view
     implementation rootProject.ext.view.constraintLayout
+
+    //single
+    implementation rootProject.ext.single.background
+    implementation rootProject.ext.single.joda
+    implementation rootProject.ext.single.xPopup
+    implementation rootProject.ext.single.init
+
+    //immersionBar
+    implementation rootProject.ext.immersionBar.core
+    implementation rootProject.ext.immersionBar.fragment
+    implementation rootProject.ext.immersionBar.ktx
+
+    //navigation
+    implementation rootProject.ext.navigation.core
+    implementation rootProject.ext.navigation.fragment
+    implementation rootProject.ext.navigation.ui
+
+    //koin
+    implementation rootProject.ext.koin.android
+    implementation rootProject.ext.koin.scope
+    implementation rootProject.ext.koin.viewModel
+
+    //coroutines
+    implementation rootProject.ext.coroutines.core
+    implementation rootProject.ext.coroutines.android
+
+    //json
+    implementation rootProject.ext.json.gson
+
+    //rx
+    implementation rootProject.ext.rx.java
+    implementation rootProject.ext.rx.kotlin
+    implementation rootProject.ext.rx.android
+    implementation rootProject.ext.rx.binding.core
+    implementation rootProject.ext.rx.binding.appcompat
+
+    //anko
+    implementation rootProject.ext.anko.core
+    implementation rootProject.ext.anko.coroutines
+
+    //okHttp
+    implementation rootProject.ext.okHttp.core
+    debugImplementation rootProject.ext.okHttp.logging
+
+    //retrofit
+    implementation rootProject.ext.retrofit.core
+    implementation rootProject.ext.retrofit.converter.gson
+    implementation rootProject.ext.retrofit.converter.scalars
+    implementation rootProject.ext.retrofit.adapter.coroutines
+
+    //log
+    implementation rootProject.ext.log.logger
+
+    //paging
+    implementation rootProject.ext.paging.core
+    implementation rootProject.ext.paging.common
+
+    //glide
+    implementation rootProject.ext.glide.core
+
+    //room
+    implementation rootProject.ext.room.core
+    kapt rootProject.ext.room.compiler
+    implementation rootProject.ext.room.ktx
+
+    //stetho
+    debugImplementation rootProject.ext.stetho.core
+    debugImplementation rootProject.ext.stetho.okHttp
+
+    //leakCanary
+    debugImplementation rootProject.ext.leakCanary.core
 
     //test
     testImplementation rootProject.ext.test.junit
