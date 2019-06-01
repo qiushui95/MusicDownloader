@@ -1,7 +1,8 @@
-package me.yangcx.music.downloader
+package me.yangcx.music.downloader.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import me.yangcx.music.downloader.R
 
 class MainActivity : AppCompatActivity() {
 

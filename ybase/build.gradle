@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.version.compileSdk
+    buildToolsVersion rootProject.ext.version.buildTolls
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.version.minSdk
+        targetSdkVersion rootProject.ext.version.targetSdk
+
+        sourceSets {
+            main.java.srcDirs += 'src/main/kotlin'
+            test.java.srcDirs += 'src/test/kotlin'
+            androidTest.java.srcDirs += 'src/androidTest/kotlin'
+        }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+        debug {
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //module
+    api project(path: ':yannotation')
+
+    //kotlin
+    implementation rootProject.ext.kotlin.stdlib
+
+    //support
+    implementation rootProject.ext.support.appcompat
+
+    //rx
+    implementation rootProject.ext.rx.java
+    implementation rootProject.ext.rx.kotlin
+    implementation rootProject.ext.rx.android
+
+    //test
+    testImplementation rootProject.ext.test.junit
+    androidTestImplementation rootProject.ext.test.runner
+    androidTestImplementation rootProject.ext.test.espresso
+}
