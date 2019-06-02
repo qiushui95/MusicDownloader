@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">随意下</string>
+    <string name="string_download_manage">下载管理</string>
+    <string name="string_song_list">歌单下载</string>
 </resources>

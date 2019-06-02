@@ -8,4 +8,19 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="styleHomeDrawerButtonStart">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">14sp</item>
+        <item name="bl_ripple_enable">true</item>
+        <item name="bl_ripple_color">#E5E5E5</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingStart">6dp</item>
+        <item name="android:paddingEnd">6dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textColor">#333333</item>
+    </style>
+
 </resources>
